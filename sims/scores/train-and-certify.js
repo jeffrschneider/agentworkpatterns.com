@@ -1,6 +1,6 @@
 /* Train and certify - teach a group of agents some material, then score
    each one against a standard.
-   Source: .../patterns/train-and-certify.md   Status: draft v1, untested */
+   Source: .../patterns/train-and-certify.md */
 
 WPSim.register('train-and-certify', {
   title: 'Train and certify',
@@ -9,8 +9,6 @@ WPSim.register('train-and-certify', {
   hue: 'verify',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/train-and-certify.md',
   blurb: 'A trainer teaches a group of agents in one room, and an examiner scores each of them in another. Both rooms run ordinary agentcollab patterns. The work pattern covers what happens between them: getting the minutes to the exam, locking the roster, and handling a trainee who fails.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'open through teach, frozen at the criteria',
   problem: 'Three ops agents must learn the new release process and prove they know it before any of them touches production.',
   contract: {

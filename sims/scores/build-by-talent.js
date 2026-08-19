@@ -1,6 +1,6 @@
 /* Build by talent - assign each slice of a deliverable to the specialist
    who can build it, then integrate the slices.
-   Source: .../patterns/build-by-talent.md   Status: draft v1, untested */
+   Source: .../patterns/build-by-talent.md */
 
 WPSim.register('build-by-talent', {
   title: 'Build by talent',
@@ -9,8 +9,6 @@ WPSim.register('build-by-talent', {
   hue: 'address',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/build-by-talent.md',
   blurb: 'The lead and the specialists write one spec together, stating what each slice promises the others, and freeze it. Each specialist then builds their own slice alone against that frozen version. The lead assembles the slices and the specialists review the seams they depend on. The assignment is not made in any room: it was made in the plan, by talent.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'fixed — cast by talent before any room opened',
   problem: 'A customer-facing feature needs a schema, an interface and its copy, and each of the three has an obvious owner.',
   contract: {

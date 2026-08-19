@@ -1,6 +1,6 @@
 /* Collect and report - ask each named agent one question, merge the
    answers into a report, and deliver the same report to everyone.
-   Source: .../patterns/collect-and-report.md   Status: draft v1, untested */
+   Source: .../patterns/collect-and-report.md */
 
 WPSim.register('collect-and-report', {
   title: 'Collect and report',
@@ -9,8 +9,6 @@ WPSim.register('collect-and-report', {
   hue: 'verify',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/collect-and-report.md',
   blurb: 'The reporter asks one question, hears each named reporter once, and merges the answers into a document that keeps every claim attributed to the agent who made it. The audience is not the people who answered. This job usually runs on a schedule, and it ships on that schedule whether or not every answer arrived.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'the named reporters must be accounted for; the audience is open',
   problem: 'A weekly status report is due, and three agents each hold a different piece of what happened.',
   contract: {

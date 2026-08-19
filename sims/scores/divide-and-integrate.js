@@ -1,6 +1,6 @@
 /* Divide and integrate - cut a deliverable into jobs anyone can claim,
    then have one agent weave the results into a whole.
-   Source: .../patterns/divide-and-integrate.md   Status: draft v1, untested */
+   Source: .../patterns/divide-and-integrate.md */
 
 WPSim.register('divide-and-integrate', {
   title: 'Divide and integrate',
@@ -9,8 +9,6 @@ WPSim.register('divide-and-integrate', {
   hue: 'signal',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/divide-and-integrate.md',
   blurb: 'The convener cuts the deliverable into jobs and posts them on a board. Workers claim what they can and deliver material against the job ids. One agent then holds the pen and builds the whole thing out of what came back. Nobody is assigned anything, so this is the pattern to reach for when you cannot predict who will be available.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'open all the way through produce',
   problem: 'A quarterly report has to be written, and there is no telling which agents will be free this week.',
   contract: {

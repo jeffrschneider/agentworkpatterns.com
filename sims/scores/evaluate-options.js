@@ -1,6 +1,6 @@
 /* Evaluate options - freeze the criteria, gather material on each option,
    compare, and recommend to a decider who was never in the room.
-   Source: .../patterns/evaluate-options.md   Status: draft v1, untested */
+   Source: .../patterns/evaluate-options.md */
 
 WPSim.register('evaluate-options', {
   title: 'Evaluate options',
@@ -9,8 +9,6 @@ WPSim.register('evaluate-options', {
   hue: 'signal',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/evaluate-options.md',
   blurb: 'The requester writes the question and the criteria and freezes both before anyone looks at an option. Researchers claim board jobs and bring back material rather than opinions. One pen builds the comparison out of that material, and the recommendation goes to a decider who never joined a room. Two of the four phases happen in no room at all.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'open through gather; the decider never joins',
   problem: 'Three vendors are on the table, and whoever chooses has to be able to defend the choice six months from now.',
   contract: {

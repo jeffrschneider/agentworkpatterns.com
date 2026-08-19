@@ -1,6 +1,6 @@
 /* Decide and announce - hear from everyone who holds a piece of the
    picture, have one agent decide, then tell everyone the same thing.
-   Source: .../patterns/decide-and-announce.md   Status: draft v1, untested */
+   Source: .../patterns/decide-and-announce.md */
 
 WPSim.register('decide-and-announce', {
   title: 'Decide and announce',
@@ -9,8 +9,6 @@ WPSim.register('decide-and-announce', {
   hue: 'broadcast',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/decide-and-announce.md',
   blurb: 'The owner posts a question and hears each agent once, decides alone with the answers in front of them, and then tells everyone the same thing at the same time. The decision itself happens in no room. The rooms exist to produce the record it was made on, and the record that it was made.',
-  status: 'draft v1 · untested',
-  statusKind: 'planned',
   grade: 'the owner’s seat never changes hands',
   problem: 'The release window collides with an audit, and one agent has to decide whether it moves.',
   contract: {

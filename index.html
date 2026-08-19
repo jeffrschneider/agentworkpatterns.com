@@ -1,96 +1,438 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agent Work Patterns</title>
-<meta name="description" content="Work patterns for agents: how whole jobs get done, phase by phase, each phase convening an Agent Collab pattern.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<style>
-:root{
-  --bg:#0f1117; --panel:#161a23; --line:#262c3a;
-  --paper:#e8eaf0; --dim:#9aa3b5; --accent:#7dd3a8; --link:#8ab4f8;
-  --mono:ui-monospace,'Cascadia Code',Consolas,monospace;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--paper);
-  font:16px/1.65 system-ui,'Segoe UI',sans-serif}
-main{max-width:800px;margin:0 auto;padding:56px 24px 80px}
-h1{font-size:1.9rem;margin:0 0 4px}
-.tag{color:var(--dim);margin:0 0 36px;max-width:64ch}
-h2{font-size:1.15rem;margin:40px 0 10px}
-p{max-width:70ch;margin:10px 0;color:var(--paper)}
-p.soft{color:var(--dim)}
-a{color:var(--link);text-decoration:none}
-a:hover{text-decoration:underline}
-table{width:100%;border-collapse:collapse;margin:16px 0}
-th{text-align:left;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--dim);font-weight:600;padding:8px 12px;border-bottom:1px solid var(--line)}
-td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-td.name{white-space:nowrap;font-weight:600}
-td.status{white-space:nowrap;font-family:var(--mono);font-size:.72rem;color:var(--dim)}
-.note{background:var(--panel);border:1px solid var(--line);border-radius:10px;
-  padding:16px 20px;margin:28px 0}
-.note p{margin:6px 0}
-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
-  color:var(--dim);font-size:.85rem}
-footer a{color:var(--dim);text-decoration:underline}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Work Patterns: how whole jobs get done</title>
+  <meta name="description" content="Work patterns for agents: a work pattern lays a job out phase by phase, each phase convening an Agent Collab pattern. What this library adds is everything between the meetings.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="sims/wp.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════ THE WIRE : design token system (work: mint lead) ══════════ */
+    :root{
+      --ink:#0A1417; --panel:#0F1D22; --line:#1C2E33;
+      --paper:#E7EFEC; --dim:#7C918C; --faint:#4A5D5A;
+      --signal:#F2A93B; --verify:#43D6A6; --address:#6BA8FF; --broadcast:#B69CFF;
+      --lead:var(--verify);
+      --disp:'Space Grotesk', sans-serif;
+      --body:'IBM Plex Sans', system-ui, sans-serif;
+      --wire:'IBM Plex Mono', ui-monospace, monospace;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; }
+    html{ scroll-behavior:smooth; }
+    body{ background:var(--ink); color:var(--paper); font-family:var(--body);
+      font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size:64px 64px, 64px 64px;
+      background-position:-1px -1px;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(80% 45% at 30% 0%, rgba(67,214,166,.10), transparent 60%),
+        radial-gradient(70% 50% at 100% 10%, rgba(107,168,255,.08), transparent 55%),
+        linear-gradient(180deg, rgba(10,20,23,.72), var(--ink) 62%);
+    }
+    a{ color:inherit; }
+
+    .layout{ position:relative; z-index:1; display:grid; grid-template-columns:248px 1fr; min-height:100vh; }
+    .rail{ border-right:1px solid var(--line); padding:26px 22px; position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto; scrollbar-width:thin; }
+    .brand{ font-family:var(--wire); font-weight:600; font-size:.82rem; letter-spacing:.02em;
+      display:flex; align-items:center; gap:9px; color:var(--paper); text-decoration:none; margin-bottom:30px; }
+    .brand .dot{ width:9px; height:9px; border-radius:2px; background:var(--lead);
+      box-shadow:0 0 0 3px rgba(67,214,166,.15), 8px 0 0 -2px var(--signal), 16px 0 0 -2px var(--broadcast); }
+    .rail .grp{ font-family:var(--wire); font-size:.64rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--faint); margin:16px 0 4px; }
+    .rail .grp:first-child{ margin-top:0; }
+    .rail nav a{ display:block; font-family:var(--wire); font-size:.8rem; color:var(--dim);
+      text-decoration:none; padding:6px 0; border-left:2px solid transparent; padding-left:12px; margin-left:-12px; }
+    .rail nav a:hover{ color:var(--paper); }
+    .rail nav a.on{ color:var(--paper); border-left-color:var(--lead); }
+    .rail .foot{ margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+      font-family:var(--wire); font-size:.72rem; color:var(--faint); }
+
+    .main{ min-width:0; }
+    .wrap{ max-width:980px; margin:0 auto; padding:0 40px; }
+
+    .eyebrow{ font-family:var(--wire); font-size:.76rem; letter-spacing:.04em; color:var(--dim); }
+    .eyebrow .tag{ color:var(--lead); }
+    h1,h2,h3{ font-family:var(--disp); font-weight:700; letter-spacing:-.02em; line-height:1.08; }
+    .lede{ color:var(--dim); font-size:1.12rem; max-width:60ch; }
+
+    .hero{ padding:74px 0 42px; border-bottom:1px solid var(--line); }
+    .hero .eyebrow{ margin-bottom:22px; display:block; }
+    .hero h1{ font-size:clamp(2.2rem,4.6vw,3.2rem); margin:0 0 18px; }
+    .hero h1 .am{ color:var(--lead); }
+
+    section.band{ padding:56px 0; border-bottom:1px solid var(--line); }
+    section.band h2{ font-size:1.8rem; margin:0 0 14px; }
+    section.band h3{ font-size:1.15rem; margin:38px 0 10px; }
+    section.band p{ color:var(--dim); max-width:66ch; }
+    section.band p b, section.band li b{ color:var(--paper); font-weight:600; }
+    .kicker{ font-family:var(--wire); font-size:.74rem; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--faint); margin:0 0 16px; }
+
+    ul.plain{ margin:18px 0 0; padding-left:20px; color:var(--dim); max-width:70ch; }
+    ul.plain li{ margin:10px 0; }
+    ul.plain b{ color:var(--paper); font-weight:600; }
+
+    .callout{ border:1px solid var(--line); border-left:3px solid var(--lead); border-radius:10px;
+      background:var(--panel); padding:14px 18px; margin:22px 0; max-width:70ch; }
+    .callout.violet{ border-left-color:var(--broadcast); }
+    .callout .t{ font-family:var(--wire); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--faint); margin-bottom:6px; }
+    .callout p{ margin:6px 0 0; color:var(--dim); }
+    .callout p:first-of-type{ margin-top:0; }
+    .callout p b{ color:var(--paper); }
+
+    pre.code{ background:#0b1220; border:1px solid var(--line); border-radius:12px; padding:16px 18px;
+      overflow-x:auto; font-family:var(--wire); font-size:.82rem; line-height:1.7; color:var(--paper); margin:20px 0; }
+    pre.code .c{ color:var(--faint); }
+
+    /* one card per pattern */
+    .pat-sec{ padding:34px 0 0; scroll-margin-top:14px; }
+    .pat-sec:first-of-type{ padding-top:26px; }
+    .pat-n{ font-family:var(--wire); font-size:.7rem; color:var(--faint); margin-bottom:10px; }
+    .ph{ border:1px dashed var(--line); border-radius:14px; min-height:320px; display:grid;
+      place-items:center; font-family:var(--wire); font-size:.76rem; color:var(--faint); }
+
+    .cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+    .btn{ font-family:var(--wire); font-size:.86rem; font-weight:500; text-decoration:none;
+      padding:12px 20px; border-radius:8px; border:1px solid transparent; display:inline-flex; align-items:center; gap:8px;
+      transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease; }
+    .btn-lead{ background:var(--lead); color:#0b1f18; font-weight:600;
+      box-shadow:0 12px 30px -14px rgba(67,214,166,.8); }
+    .btn-lead:hover{ transform:translateY(-2px); }
+    .btn-ghost{ border-color:var(--line); color:var(--paper); background:rgba(255,255,255,.02); }
+    .btn-ghost:hover{ border-color:var(--dim); transform:translateY(-2px); }
+
+    footer{ padding:34px 0 60px; }
+    footer .wrap{ font-family:var(--wire); font-size:.78rem; color:var(--faint); display:flex; gap:14px; flex-wrap:wrap; }
+    footer a{ color:var(--dim); text-decoration:none; }
+
+    @media (max-width:900px){
+      .layout{ grid-template-columns:1fr; }
+      .rail{ position:static; height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+  </style>
 </head>
 <body>
-<main>
-<h1>Agent Work Patterns</h1>
-<p class="tag">How whole jobs get done. A work pattern lays a job out phase
-by phase, and each phase convenes a collaboration pattern from
-<a href="https://agentcollab.dev">Agent Collab</a>. What this library adds is
-everything between the meetings: what artifact crosses each phase boundary,
-what happens when a phase fails, and who is on the roster across the whole
-job.</p>
+  <div class="layout">
 
-<h2>Patterns and plans</h2>
-<p>A <strong>work pattern</strong> is the reusable shape of a job. A
-<strong>work plan</strong> is the document written for one specific job: the
-actual agents, the actual artifacts, the actual contingencies. Every job has
-a plan. Only shapes that keep recurring get a pattern.</p>
-<p class="soft">When a pattern fits, you write the plan by filling in its
-blanks. When nothing fits, you write the plan from scratch using the format
-in planning &mdash; the job is never blocked on this library. A plan that
-keeps getting copied with the names swapped out is a work pattern announcing
-itself.</p>
+    <aside class="rail">
+      <a class="brand" href="/"><span class="dot"></span>AGENTWORKPATTERNS</a>
+      <nav>
+        <div class="grp">learn</div>
+        <a class="on" href="#top">/ overview</a>
+        <a href="#plans">/ patterns-and-plans</a>
+        <a href="#no-pattern">/ the-missing-pattern</a>
+        <div class="grp">the format</div>
+        <a href="#planning">/ planning</a>
+        <div class="grp">work patterns</div>
+        <a href="#train-and-certify">/ train-and-certify</a>
+        <a href="#divide-and-integrate">/ divide-and-integrate</a>
+        <a href="#build-by-talent">/ build-by-talent</a>
+        <a href="#decide-and-announce">/ decide-and-announce</a>
+        <div class="grp">reference</div>
+        <a href="https://github.com/jeffrschneider/agentworkpatterns">/ the-repo &#8599;</a>
+        <a href="https://agentcollab.dev">/ agentcollab &#8599;</a>
+        <a href="https://agentmesh.ai">/ agentmesh &#8599;</a>
+        <a href="https://agentnaming.ai">/ pan &#8599;</a>
+      </nav>
+      <div class="foot"><a href="https://agentmesh.ai/standards.html">The family of standards</a><br><br>
+      the layer above the meeting<br>github.com/jeffrschneider/agentworkpatterns</div>
+    </aside>
 
-<h2>The library</h2>
-<table>
-<tr><th>Document</th><th>Job</th><th>Status</th></tr>
-<tr><td class="name"><a href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/planning.md">Planning</a></td>
-<td>how to write a work plan, from a pattern or from scratch</td>
-<td class="status">draft v1 &middot; untested</td></tr>
-<tr><td class="name"><a href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/train-and-certify.md">Train and certify</a></td>
-<td>teach a group of agents some material, then score each one against a standard</td>
-<td class="status">draft v1 &middot; untested</td></tr>
-<tr><td class="name"><a href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/divide-and-integrate.md">Divide and integrate</a></td>
-<td>cut a deliverable into claimable jobs, then weave the results into a whole</td>
-<td class="status">draft v1 &middot; untested</td></tr>
-<tr><td class="name"><a href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/build-by-talent.md">Build by talent</a></td>
-<td>assign each slice of a deliverable to the specialist who can build it, then integrate</td>
-<td class="status">draft v1 &middot; untested</td></tr>
-<tr><td class="name"><a href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/decide-and-announce.md">Decide and announce</a></td>
-<td>gather input, have one agent decide, tell everyone the same thing</td>
-<td class="status">draft v1 &middot; untested</td></tr>
-</table>
+    <main class="main" id="top">
 
-<div class="note">
-<p><strong>Nobody enforces a work pattern.</strong> A collab pattern is
-enforceable inside its room &mdash; a facilitator can hold the floor modes
-and the membership grade mechanically. No facilitator spans phases. A work
-pattern is a script for whoever convenes the rooms, and the plan is what
-they are accountable to.</p>
-</div>
+      <div class="wrap hero">
+        <span class="eyebrow"><span class="tag">agentworkpatterns</span> · the layer above the meeting</span>
+        <h1>Patterns for getting a<br><span class="am">whole job</span> done</h1>
+        <p class="lede"><a href="https://agentcollab.dev">Agent Collab</a> shapes a single
+          collaboration: one room, one pattern, one period. This library is the layer above
+          it. A work pattern lays a job out phase by phase, and each phase convenes a collab
+          pattern. What this library adds is everything between the meetings: what artifact
+          crosses each phase boundary, what happens when a phase fails, and who is on the
+          roster across the whole job.</p>
+        <div class="cta">
+          <a class="btn btn-lead" href="#patterns">browse the patterns</a>
+          <a class="btn btn-ghost" href="https://github.com/jeffrschneider/agentworkpatterns">the repo ↗</a>
+        </div>
+      </div>
 
-<footer>
-<a href="https://github.com/jeffrschneider/agentworkpatterns">github.com/jeffrschneider/agentworkpatterns</a>
-&nbsp;&middot;&nbsp; sibling library:
-<a href="https://agentcollab.dev">agentcollab.dev</a>
-</footer>
-</main>
+      <section class="band" id="plans">
+        <div class="wrap">
+          <p class="kicker">patterns and plans</p>
+          <h2>Every job has a plan. Only recurring shapes get a pattern.</h2>
+          <p>A <b>work pattern</b> is the reusable shape of a job. A <b>work plan</b> is the
+            document written for one specific job: the actual agents, the actual artifacts,
+            the actual contingencies. When a pattern fits, you write the plan by filling in
+            its blanks. When nothing fits, you write the plan from scratch — every plan uses
+            the same headings either way, so any reader can pick up any plan.</p>
+          <p>Whoever convenes the job writes the plan before any room opens:</p>
+          <pre class="code"><span class="c"># a plan derived from the train-and-certify pattern</span>
+PLAN: onboard the ops fleet
+goal: three ops agents certified on the new release process
+phases:
+  1. teach   - convenes briefing v1, convened by the trainer
+  2. study   - no room: each trainee reads the minutes privately
+  3. certify - convenes assessment, convened by the examiner
+handoffs:
+  1->3: the minutes - complete before any criteria are written
+contingencies:
+  - if most of the cohort fails, the material is the problem:
+    revise it and re-run the job from teach
+roster:
+  open through teach; frozen when the criteria publish
+open items:
+  a trainee who fails is re-briefed and re-certified inside this job</pre>
+          <p>The handoffs are checkable before a single room opens: every collab pattern
+            declares its INPUTS and OUTPUTS, so a plan can show that what one phase produces
+            is what the next one needs. A phase does not have to convene a room at all —
+            private study, a specialist building a slice, an owner making a decision. A
+            roomless phase still gets a handoff on each side; what it does not get is a
+            record, so the plan says what stands in for one.</p>
+          <div class="callout">
+            <div class="t">nobody enforces a work pattern</div>
+            <p>A collab pattern is enforceable inside its room — a facilitator holds the
+              floor modes and the membership grade mechanically. No facilitator spans
+              phases. A work pattern is a script for whoever convenes the rooms, and
+              <b>the plan is what they are accountable to</b>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="patterns">
+        <div class="wrap">
+          <p class="kicker">the library</p>
+          <h2>The patterns</h2>
+          <p>Four work patterns and the plan format, each linking to its full document in
+            the repo: phases, handoffs, failure edges, and roster rules. All four are
+            drafts — "untested" lifts when a pattern survives its first real
+            multi-agent job.</p>
+          <p>Train and certify has a simulation under it, in the same visual grammar as
+            <a href="https://agentcollab.dev">agentcollab.dev</a> but extended with the
+            things a job has and a single meeting does not: two rooms, the roomless stretch
+            between them, and agents crossing a phase boundary. If it earns its keep, the
+            other patterns get one too.</p>
+
+          <section class="pat-sec" id="planning">
+            <div class="pat-n">01 &middot; the format</div>
+            <div class="acsim" style="--hue:var(--broadcast)">
+              <div class="acsim-head">
+                <div class="acsim-tag">format &middot; how a job gets written down</div>
+                <h3 class="acsim-name">Planning</h3>
+                <p class="acsim-line">How to lay out a whole job before any room opens.
+                  Convening answers "which pattern do we run for this period of the room";
+                  planning answers the question one level up, and writes the answer down as
+                  a work plan.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/planning.md" target="_blank" rel="noopener noreferrer">read planning &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step"><div class="n">goal</div><div class="v">what exists when it is done</div></div>
+                  <div class="wp-step"><div class="n">phases</div><div class="v">each convenes a pattern</div></div>
+                  <div class="wp-step"><div class="n">handoffs</div><div class="v">what crosses each boundary</div></div>
+                  <div class="wp-step"><div class="n">contingencies</div><div class="v">if X, then Y</div></div>
+                  <div class="wp-step"><div class="n">roster</div><div class="v">who, and whether it can change</div></div>
+                  <div class="wp-step"><div class="n">open items</div><div class="v">who may close what, later</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>every plan, the same headings</b> — pattern-derived or written from scratch, so any reader can pick up any plan.</div>
+                  <div class="acsim-pl"><b>handoffs are checkable</b> — every collab pattern declares INPUTS and OUTPUTS, so a plan can be checked before a single room opens.</div>
+                  <div class="acsim-pl"><b>never blocked</b> — when nothing in the library fits, the plan is written from scratch and the job runs anyway.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pat-sec" id="train-and-certify">
+            <div class="pat-n">02 &middot; teach &amp; certify</div>
+            <div class="ph" data-sim="train-and-certify">train and certify</div>
+          </section>
+
+          <section class="pat-sec" id="divide-and-integrate">
+            <div class="pat-n">03 &middot; production &middot; pulled</div>
+            <div class="acsim" style="--hue:var(--signal)">
+              <div class="acsim-head">
+                <div class="acsim-tag">work pattern &middot; cut, claim, weave</div>
+                <h3 class="acsim-name">Divide and integrate</h3>
+                <p class="acsim-line">Split a deliverable into jobs anyone can claim, then
+                  have one agent weave the results into a whole. The jobs must ask for
+                  material, not finished prose — otherwise the integrator is rewriting,
+                  not integrating.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                  <span class="acsim-grade">roster: open — the most open job in the library</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/divide-and-integrate.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step noroom"><div class="n">1 &middot; divide</div><div class="c">cut the job list</div><div class="v">no room</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">2 &middot; produce</div><div class="c">claim and deliver</div><div class="v">convenes work-board</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">3 &middot; integrate</div><div class="c">one pen weaves the whole</div><div class="v">convenes rolling-synthesis</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>handoffs:</b> the job list going in, each job stating what material it wants; delivered material tied to job ids coming out.</div>
+                  <div class="acsim-pl"><b>failure edges:</b> an unclaimed job just sits, so the plan gives the board a deadline. Material that does not fit becomes a follow-up job, not a negotiation — the worker may already be gone.</div>
+                  <div class="acsim-pl"><b>roster:</b> open all the way through produce — that is the point of the board. Use this when you cannot predict who will be available.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pat-sec" id="build-by-talent">
+            <div class="pat-n">04 &middot; production &middot; assigned</div>
+            <div class="acsim" style="--hue:var(--address)">
+              <div class="acsim-head">
+                <div class="acsim-tag">work pattern &middot; the assignment is the point</div>
+                <h3 class="acsim-name">Build by talent</h3>
+                <p class="acsim-line">Divide a deliverable among specialists, each building
+                  the slice only they can build, then integrate. Do not run this through a
+                  work board — the board hands a job to whoever claims first, and handing
+                  the schema to the copywriter is not slower, it is wrong.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                  <span class="acsim-grade">roster: fixed — cast by talent in the plan</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/build-by-talent.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step"><div class="n">1 &middot; spec</div><div class="c">freeze the seams</div><div class="v">convenes owner-contributors</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step noroom"><div class="n">2 &middot; build</div><div class="c">each slice, privately</div><div class="v">no room</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">3 &middot; integrate</div><div class="c">the lead assembles</div><div class="v">convenes rolling-synthesis</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">4 &middot; review</div><div class="c">each reviews the seams it consumes</div><div class="v">convenes critique-circle</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>handoffs:</b> the frozen spec, seams stated — the only thing a specialist needs to start. Each delivered slice names the spec version it was built against.</div>
+                  <div class="acsim-pl"><b>failure edges:</b> a specialist misses and no substitute exists, by definition — the plan names a backup per slice or accepts the delay in writing. An unspecced seam reopens the spec for that seam only.</div>
+                  <div class="acsim-pl"><b>roster:</b> fixed before any room opens. Assignment is a planning act — no collab pattern can express it, and the board is deliberately built to prevent it.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pat-sec" id="decide-and-announce">
+            <div class="pat-n">05 &middot; decision</div>
+            <div class="acsim" style="--hue:var(--broadcast)">
+              <div class="acsim-head">
+                <div class="acsim-tag">work pattern &middot; hear, decide, tell</div>
+                <h3 class="acsim-name">Decide and announce</h3>
+                <p class="acsim-line">Hear from everyone who holds a piece of the picture,
+                  have one agent decide, then tell everyone the same thing. The decision
+                  itself happens in no room — the rooms produce the record it is made on,
+                  and the record that it was made.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                  <span class="acsim-grade">roster: the owner's seat never changes hands</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/decide-and-announce.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step"><div class="n">1 &middot; hear</div><div class="c">each answers once</div><div class="v">convenes roll-call</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step noroom"><div class="n">2 &middot; decide</div><div class="c">the owner, alone, in writing</div><div class="v">no room</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">3 &middot; announce</div><div class="c">the decision, the reasons, what changes</div><div class="v">convenes briefing</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>handoffs:</b> the roll-call record going in; the decision written down with its reasons going out — written before the briefing, so announcing does not turn into deciding out loud.</div>
+                  <div class="acsim-pl"><b>failure edges:</b> answers conflict — the owner decides anyway, because conflict is why the decision has an owner, and names the dissent in the announcement. A required answer that never came is named too.</div>
+                  <div class="acsim-pl"><b>roster:</b> the plan names whose answers are required; hear is not complete until those agents have spoken. Announce is open — a latecomer reads the minutes.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <section class="band" id="no-pattern">
+        <div class="wrap">
+          <p class="kicker">the missing pattern</p>
+          <h2>There will always be a job with no pattern</h2>
+          <p>That is not a flaw to fix; it is what the plan format is for. When nothing in
+            the library fits, say so in the plan and write the phases yourself. A plan
+            written from scratch is still readable by anyone, because every plan uses the
+            same headings, and the job is never blocked on this library.</p>
+          <p>If you notice you keep copying the same hand-written plan with the names
+            swapped out, it has earned a pattern page. <b>The entry bar is recurrence</b>,
+            not conceivability — the library is a cache of the plans that keep coming back,
+            not a catalogue of every job someone could imagine.</p>
+          <div class="callout violet">
+            <div class="t">the one-way dependency</div>
+            <p>Work patterns name <a href="https://agentcollab.dev">agentcollab</a> patterns
+              as their phases; no collab playbook knows this library exists. Where a phase
+              needs a collab pattern that does not exist yet — train-and-certify's
+              assessment phase is one — the convener posts the rules in the room, which is
+              a pattern written inline, and both sides still read one document.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="wrap">
+          <span>Agent Work Patterns · the layer above the meeting</span>
+          <a href="https://github.com/jeffrschneider/agentworkpatterns">GitHub ↗</a>
+          <a href="https://agentcollab.dev">Agent Collab ↗</a>
+          <a href="https://agentmesh.ai">AgentMesh ↗</a>
+          <a href="https://agentnaming.ai">PAN ↗</a>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+<script src="sims/wp-sim.js"></script>
+<script src="sims/scores/train-and-certify.js"></script>
+<script>
+// The simulation is built only as it comes near the viewport.
+(() => {
+  const build = new IntersectionObserver((ents) => {
+    ents.forEach((e) => {
+      if (!e.isIntersecting) return;
+      build.unobserve(e.target);
+      e.target.classList.remove("ph");
+      e.target.textContent = "";
+      WPSim.mount(e.target, e.target.dataset.sim);
+    });
+  }, { rootMargin: "700px 0px" });
+  document.querySelectorAll("[data-sim]").forEach((el) => build.observe(el));
+})();
+</script>
+<script>
+// The rail marker follows the section in view.
+(() => {
+  const links = [...document.querySelectorAll('.rail nav a[href^="#"]')];
+  const byId = Object.fromEntries(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const targets = Object.keys(byId).map((id) => document.getElementById(id)).filter(Boolean);
+  function setOn(id) {
+    links.forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + id));
+  }
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries.filter((e) => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (visible.length) setOn(visible[0].target.id);
+  }, { rootMargin: "-20% 0px -60% 0px" });
+  targets.forEach((t) => io.observe(t));
+  links.forEach((a) => a.addEventListener("click", () => setOn(a.getAttribute("href").slice(1))));
+})();
+</script>
 </body>
 </html>

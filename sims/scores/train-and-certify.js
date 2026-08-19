@@ -8,7 +8,7 @@ WPSim.register('train-and-certify', {
   shape: 'work pattern · teach, then examine',
   hue: 'verify',
   doc: 'https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/train-and-certify.md',
-  blurb: 'A trainer teaches a group of agents in one room, and an examiner scores each of them in another. Both meetings are ordinary agentcollab patterns. The work pattern covers what happens between them: getting the minutes to the exam, locking the roster, and handling a trainee who fails.',
+  blurb: 'A trainer teaches a group of agents in one room, and an examiner scores each of them in another. Both rooms run ordinary agentcollab patterns. The work pattern covers what happens between them: getting the minutes to the exam, locking the roster, and handling a trainee who fails.',
   status: 'draft v1 · untested',
   statusKind: 'planned',
   grade: 'open through teach, frozen at the criteria',
@@ -28,7 +28,7 @@ WPSim.register('train-and-certify', {
     result: 'three certified agents — one of them on the second try',
     record: 'the minutes from teach, and each scored submission from certify',
     open: 'nothing — the failed trainee was re-briefed and passed',
-    note: 'The two meetings were ordinary agentcollab patterns. The work pattern supplied the rest: it carried the minutes to the exam, locked the roster, turned the latecomer away, and said what to do when a trainee failed.'
+    note: 'The two rooms ran ordinary agentcollab patterns. The work pattern supplied the rest: it carried the minutes to the exam, locked the roster, turned the latecomer away, and said what to do when a trainee failed.'
   },
   rooms: [
     { x0: 40, y0: 44, x1: 288, y1: 336, label: 'room · teach — briefing v1' },
@@ -85,7 +85,7 @@ WPSim.register('train-and-certify', {
       move: { o1: [0.44, 0.40], o2: [0.5, 0.62], o3: [0.56, 0.40] },
       set: { o1: 'working', o2: 'working', o3: 'working', tr: 'out' },
       prop: { min: { at: [0.5, 0.16] } },
-      note: 'Not every phase is a meeting. The trainees study on their own, which leaves no record behind, so the plan has to say what proves the studying happened. Here, the exam does.'
+      note: 'Not every phase happens in a room. The trainees study on their own, which leaves no record behind, so the plan has to say what proves the studying happened. Here, the exam does.'
     },
     {
       phase: 'Certify — an assessment', say: 'ex', to: 'crit', k: 'pen',

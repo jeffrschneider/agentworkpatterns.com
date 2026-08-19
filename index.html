@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Work Patterns: how whole jobs get done</title>
-  <meta name="description" content="Work patterns for agents: how a whole job gets done, phase by phase. Every meeting in a work pattern is an Agent Collab pattern; the work pattern covers everything between the meetings.">
+  <meta name="description" content="Work patterns for agents: how a whole job gets done, phase by phase. Every phase that brings agents together in a room runs an Agent Collab pattern; the work pattern covers everything between the rooms.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="sims/wp.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -147,7 +147,7 @@
         <a href="https://agentnaming.ai">/ pan &#8599;</a>
       </nav>
       <div class="foot"><a href="https://agentmesh.ai/standards.html">The family of standards</a><br><br>
-      whole jobs, not single meetings<br>github.com/jeffrschneider/agentworkpatterns</div>
+      whole jobs, not single rooms<br>github.com/jeffrschneider/agentworkpatterns</div>
     </aside>
 
     <main class="main" id="top">
@@ -156,11 +156,11 @@
         <span class="eyebrow"><span class="tag">agentworkpatterns</span> · how whole jobs get done</span>
         <h1>Patterns for getting a<br><span class="am">whole job</span> done</h1>
         <p class="lede"><a href="https://agentcollab.dev">Agent Collab</a> describes how
-          agents run one meeting. This library describes how they get a whole job done. A
-          work pattern lists the phases of a job; each phase that needs a meeting runs an
-          Agent Collab pattern, and the work pattern covers what no single meeting can:
-          what gets handed from phase to phase, who is allowed in across the job, and what
-          to do when a phase fails.</p>
+          agents work together inside one room. This library describes how they get a
+          whole job done. A work pattern lists the phases of a job; each phase that brings
+          agents together in a room runs an Agent Collab pattern, and the work pattern
+          covers what no single room can: what gets handed from phase to phase, who is
+          allowed in across the job, and what to do when a phase fails.</p>
         <div class="cta">
           <a class="btn btn-lead" href="#patterns">browse the patterns</a>
           <a class="btn btn-ghost" href="https://github.com/jeffrschneider/agentworkpatterns">the repo ↗</a>
@@ -171,19 +171,21 @@
         <div class="wrap">
           <p class="kicker">keeping the layers straight</p>
           <h2>What a work pattern is made of</h2>
-          <p>Every meeting in a work pattern is an <a href="https://agentcollab.dev">Agent
-            Collab</a> pattern, used exactly as written. When a phase says it convenes a
-            briefing, that is the same briefing playbook from agentcollab.dev, unchanged.
-            This library does not add meeting patterns and it does not modify them.</p>
+          <p>Every phase that brings agents together in a room runs an
+            <a href="https://agentcollab.dev">Agent Collab</a> pattern, used exactly as
+            written. When a phase says it convenes a briefing, that is the same briefing
+            playbook from agentcollab.dev, unchanged - and the same goes for a critique
+            circle, a bake-off, or a work board, which are not meetings at all. This
+            library adds no collab patterns and modifies none.</p>
           <p>Everything else in a work pattern is not a pattern at all. It is the set of
-            instructions that no single meeting can hold: the order of the phases, the
-            artifact one phase hands to the next, the phases that happen without any
-            meeting (a trainee studying, a specialist building a slice), the rule for who
+            instructions that no single room can hold: the order of the phases, the
+            artifact one phase hands to the next, the phases that happen in no room at
+            all (a trainee studying, a specialist building a slice), the rule for who
             can join or leave across the whole job, and what to do when a phase fails.</p>
           <p>There is one loose end, and the pattern that has it says so. Train and
-            certify needs an exam meeting that Agent Collab does not have yet. Until that
+            certify needs an exam pattern that Agent Collab does not have yet. Until that
             playbook is written, the examiner posts the exam rules in the room, which is
-            Agent Collab's own fallback for a meeting with no playbook.</p>
+            Agent Collab's own fallback when no playbook fits.</p>
         </div>
       </section>
 
@@ -216,12 +218,12 @@ open items:
   a trainee who fails is re-briefed and re-certified inside this job</pre>
           <p>A plan can be checked before a single room opens, because every Agent Collab
             pattern declares its INPUTS and OUTPUTS: the plan just has to show that what
-            one phase produces is what the next phase needs. Phases without meetings still
+            one phase produces is what the next phase needs. Phases without rooms still
             hand something to the next phase, but they leave no record behind, so the plan
             has to say what proves the work happened.</p>
           <div class="callout">
             <div class="t">nobody enforces a work pattern</div>
-            <p>Inside a meeting, the rules can be enforced: the software hosting each
+            <p>Inside a room, the rules can be enforced: the software hosting each
               agent holds the floor rules mechanically. Nothing enforces a work pattern,
               because no facilitator exists across phases. Whoever convenes the job
               follows the plan, and <b>the plan is how you check their work
@@ -240,7 +242,7 @@ open items:
             until it survives a real multi-agent job.</p>
           <p>Train and certify has a simulation under it. It uses the same visual language
             as the simulations on <a href="https://agentcollab.dev">agentcollab.dev</a>,
-            plus the things a job has that a single meeting does not: two rooms on one
+            plus the things a job has that a single room does not: two rooms on one
             stage, a stretch with no room between them, and agents that move from one
             phase to the next. If it works well, the other patterns will get one too.</p>
 
@@ -272,6 +274,7 @@ open items:
                   <div class="acsim-pl"><b>every plan, the same headings</b> — pattern-derived or written from scratch, so any reader can pick up any plan.</div>
                   <div class="acsim-pl"><b>handoffs are checkable</b> — every collab pattern declares INPUTS and OUTPUTS, so a plan can be checked before a single room opens.</div>
                   <div class="acsim-pl"><b>never blocked</b> — when nothing in the library fits, the plan is written from scratch and the job runs anyway.</div>
+                  <div class="acsim-pl"><b>making a pattern yours</b> — fill every seat, artifact, and gap with a real name or date; change anything except what the pattern marks as load-bearing. There is a worked example in the repo.</div>
                 </div>
               </div>
             </div>
@@ -358,8 +361,8 @@ open items:
                 <h3 class="acsim-name">Decide and announce</h3>
                 <p class="acsim-line">Hear from everyone who holds a piece of the picture,
                   have one agent decide, then tell everyone the same thing. The decision
-                  itself happens in no meeting: the first meeting collects the answers the
-                  owner decides on, and the last one puts the decision on the record.</p>
+                  itself happens in no room: the roll call collects the answers the owner
+                  decides on, and the briefing puts the decision on the record.</p>
                 <div class="acsim-meta">
                   <span class="acsim-status planned">draft v1 &middot; untested</span>
                   <span class="acsim-grade">roster: the owner's seat never changes hands</span>
@@ -400,7 +403,7 @@ open items:
           <div class="callout violet">
             <div class="t">the one-way dependency</div>
             <p>Work patterns use <a href="https://agentcollab.dev">agentcollab</a> patterns
-              for their meetings; no collab playbook knows this library exists. Anything
+              for every room they open; no collab playbook knows this library exists. Anything
               added here changes nothing over there.</p>
           </div>
         </div>
@@ -408,7 +411,7 @@ open items:
 
       <footer>
         <div class="wrap">
-          <span>Agent Work Patterns · whole jobs, not single meetings</span>
+          <span>Agent Work Patterns · whole jobs, not single rooms</span>
           <a href="https://github.com/jeffrschneider/agentworkpatterns">GitHub ↗</a>
           <a href="https://agentcollab.dev">Agent Collab ↗</a>
           <a href="https://agentmesh.ai">AgentMesh ↗</a>

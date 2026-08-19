@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Work Patterns: how whole jobs get done</title>
-  <meta name="description" content="Work patterns for agents: a work pattern lays a job out phase by phase, each phase convening an Agent Collab pattern. What this library adds is everything between the meetings.">
+  <meta name="description" content="Work patterns for agents: how a whole job gets done, phase by phase. Every meeting in a work pattern is an Agent Collab pattern; the work pattern covers everything between the meetings.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="sims/wp.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,6 +130,7 @@
       <nav>
         <div class="grp">learn</div>
         <a class="on" href="#top">/ overview</a>
+        <a href="#made-of">/ what-its-made-of</a>
         <a href="#plans">/ patterns-and-plans</a>
         <a href="#no-pattern">/ the-missing-pattern</a>
         <div class="grp">the format</div>
@@ -146,35 +147,56 @@
         <a href="https://agentnaming.ai">/ pan &#8599;</a>
       </nav>
       <div class="foot"><a href="https://agentmesh.ai/standards.html">The family of standards</a><br><br>
-      the layer above the meeting<br>github.com/jeffrschneider/agentworkpatterns</div>
+      whole jobs, not single meetings<br>github.com/jeffrschneider/agentworkpatterns</div>
     </aside>
 
     <main class="main" id="top">
 
       <div class="wrap hero">
-        <span class="eyebrow"><span class="tag">agentworkpatterns</span> · the layer above the meeting</span>
+        <span class="eyebrow"><span class="tag">agentworkpatterns</span> · how whole jobs get done</span>
         <h1>Patterns for getting a<br><span class="am">whole job</span> done</h1>
-        <p class="lede"><a href="https://agentcollab.dev">Agent Collab</a> shapes a single
-          collaboration: one room, one pattern, one period. This library is the layer above
-          it. A work pattern lays a job out phase by phase, and each phase convenes a collab
-          pattern. What this library adds is everything between the meetings: what artifact
-          crosses each phase boundary, what happens when a phase fails, and who is on the
-          roster across the whole job.</p>
+        <p class="lede"><a href="https://agentcollab.dev">Agent Collab</a> describes how
+          agents run one meeting. This library describes how they get a whole job done. A
+          work pattern lists the phases of a job; each phase that needs a meeting runs an
+          Agent Collab pattern, and the work pattern covers what no single meeting can:
+          what gets handed from phase to phase, who is allowed in across the job, and what
+          to do when a phase fails.</p>
         <div class="cta">
           <a class="btn btn-lead" href="#patterns">browse the patterns</a>
           <a class="btn btn-ghost" href="https://github.com/jeffrschneider/agentworkpatterns">the repo ↗</a>
         </div>
       </div>
 
+      <section class="band" id="made-of">
+        <div class="wrap">
+          <p class="kicker">keeping the layers straight</p>
+          <h2>What a work pattern is made of</h2>
+          <p>Every meeting in a work pattern is an <a href="https://agentcollab.dev">Agent
+            Collab</a> pattern, used exactly as written. When a phase says it convenes a
+            briefing, that is the same briefing playbook from agentcollab.dev, unchanged.
+            This library does not add meeting patterns and it does not modify them.</p>
+          <p>Everything else in a work pattern is not a pattern at all. It is the set of
+            instructions that no single meeting can hold: the order of the phases, the
+            artifact one phase hands to the next, the phases that happen without any
+            meeting (a trainee studying, a specialist building a slice), the rule for who
+            can join or leave across the whole job, and what to do when a phase fails.</p>
+          <p>There is one loose end, and the pattern that has it says so. Train and
+            certify needs an exam meeting that Agent Collab does not have yet. Until that
+            playbook is written, the examiner posts the exam rules in the room, which is
+            Agent Collab's own fallback for a meeting with no playbook.</p>
+        </div>
+      </section>
+
       <section class="band" id="plans">
         <div class="wrap">
           <p class="kicker">patterns and plans</p>
-          <h2>Every job has a plan. Only recurring shapes get a pattern.</h2>
-          <p>A <b>work pattern</b> is the reusable shape of a job. A <b>work plan</b> is the
-            document written for one specific job: the actual agents, the actual artifacts,
-            the actual contingencies. When a pattern fits, you write the plan by filling in
-            its blanks. When nothing fits, you write the plan from scratch — every plan uses
-            the same headings either way, so any reader can pick up any plan.</p>
+          <h2>Every job gets a plan. A pattern is a plan worth reusing.</h2>
+          <p>A <b>work plan</b> is the document you write for one specific job: the actual
+            agents, the actual artifacts, the actual contingencies. A <b>work pattern</b>
+            is a plan for a kind of job that keeps coming up, with the specifics left
+            blank. When a pattern fits your job, you fill in its blanks. When nothing
+            fits, you write the plan from scratch. Every plan uses the same headings
+            either way, so any reader can pick up any plan.</p>
           <p>Whoever convenes the job writes the plan before any room opens:</p>
           <pre class="code"><span class="c"># a plan derived from the train-and-certify pattern</span>
 PLAN: onboard the ops fleet
@@ -192,18 +214,18 @@ roster:
   open through teach; frozen when the criteria publish
 open items:
   a trainee who fails is re-briefed and re-certified inside this job</pre>
-          <p>The handoffs are checkable before a single room opens: every collab pattern
-            declares its INPUTS and OUTPUTS, so a plan can show that what one phase produces
-            is what the next one needs. A phase does not have to convene a room at all —
-            private study, a specialist building a slice, an owner making a decision. A
-            roomless phase still gets a handoff on each side; what it does not get is a
-            record, so the plan says what stands in for one.</p>
+          <p>A plan can be checked before a single room opens, because every Agent Collab
+            pattern declares its INPUTS and OUTPUTS: the plan just has to show that what
+            one phase produces is what the next phase needs. Phases without meetings still
+            hand something to the next phase, but they leave no record behind, so the plan
+            has to say what proves the work happened.</p>
           <div class="callout">
             <div class="t">nobody enforces a work pattern</div>
-            <p>A collab pattern is enforceable inside its room — a facilitator holds the
-              floor modes and the membership grade mechanically. No facilitator spans
-              phases. A work pattern is a script for whoever convenes the rooms, and
-              <b>the plan is what they are accountable to</b>.</p>
+            <p>Inside a meeting, the rules can be enforced: the software hosting each
+              agent holds the floor rules mechanically. Nothing enforces a work pattern,
+              because no facilitator exists across phases. Whoever convenes the job
+              follows the plan, and <b>the plan is how you check their work
+              afterwards</b>.</p>
           </div>
         </div>
       </section>
@@ -212,15 +234,15 @@ open items:
         <div class="wrap">
           <p class="kicker">the library</p>
           <h2>The patterns</h2>
-          <p>Four work patterns and the plan format, each linking to its full document in
-            the repo: phases, handoffs, failure edges, and roster rules. All four are
-            drafts — "untested" lifts when a pattern survives its first real
-            multi-agent job.</p>
-          <p>Train and certify has a simulation under it, in the same visual grammar as
-            <a href="https://agentcollab.dev">agentcollab.dev</a> but extended with the
-            things a job has and a single meeting does not: two rooms, the roomless stretch
-            between them, and agents crossing a phase boundary. If it earns its keep, the
-            other patterns get one too.</p>
+          <p>Four work patterns and the plan format. Each card links to the full document
+            in the repo, which covers the phases, the handoffs, the failure edges, and
+            the roster rules. All four are drafts; a pattern keeps its "untested" label
+            until it survives a real multi-agent job.</p>
+          <p>Train and certify has a simulation under it. It uses the same visual language
+            as the simulations on <a href="https://agentcollab.dev">agentcollab.dev</a>,
+            plus the things a job has that a single meeting does not: two rooms on one
+            stage, a stretch with no room between them, and agents that move from one
+            phase to the next. If it works well, the other patterns will get one too.</p>
 
           <section class="pat-sec" id="planning">
             <div class="pat-n">01 &middot; the format</div>
@@ -229,9 +251,9 @@ open items:
                 <div class="acsim-tag">format &middot; how a job gets written down</div>
                 <h3 class="acsim-name">Planning</h3>
                 <p class="acsim-line">How to lay out a whole job before any room opens.
-                  Convening answers "which pattern do we run for this period of the room";
-                  planning answers the question one level up, and writes the answer down as
-                  a work plan.</p>
+                  The plan names the phases, what each phase hands to the next, who does
+                  the work, and what to do when things go wrong. You write one for every
+                  job, whether or not a pattern fits.</p>
                 <div class="acsim-meta">
                   <span class="acsim-status planned">draft v1 &middot; untested</span>
                 </div>
@@ -322,7 +344,7 @@ open items:
                 <div class="wp-facts">
                   <div class="acsim-pl"><b>handoffs:</b> the frozen spec, seams stated — the only thing a specialist needs to start. Each delivered slice names the spec version it was built against.</div>
                   <div class="acsim-pl"><b>failure edges:</b> a specialist misses and no substitute exists, by definition — the plan names a backup per slice or accepts the delay in writing. An unspecced seam reopens the spec for that seam only.</div>
-                  <div class="acsim-pl"><b>roster:</b> fixed before any room opens. Assignment is a planning act — no collab pattern can express it, and the board is deliberately built to prevent it.</div>
+                  <div class="acsim-pl"><b>roster:</b> fixed before any room opens. The assignment happens in the plan itself — no collab pattern can assign work to a named agent, and the work board is deliberately built not to.</div>
                 </div>
               </div>
             </div>
@@ -336,8 +358,8 @@ open items:
                 <h3 class="acsim-name">Decide and announce</h3>
                 <p class="acsim-line">Hear from everyone who holds a piece of the picture,
                   have one agent decide, then tell everyone the same thing. The decision
-                  itself happens in no room — the rooms produce the record it is made on,
-                  and the record that it was made.</p>
+                  itself happens in no meeting: the first meeting collects the answers the
+                  owner decides on, and the last one puts the decision on the record.</p>
                 <div class="acsim-meta">
                   <span class="acsim-status planned">draft v1 &middot; untested</span>
                   <span class="acsim-grade">roster: the owner's seat never changes hands</span>
@@ -373,23 +395,20 @@ open items:
             written from scratch is still readable by anyone, because every plan uses the
             same headings, and the job is never blocked on this library.</p>
           <p>If you notice you keep copying the same hand-written plan with the names
-            swapped out, it has earned a pattern page. <b>The entry bar is recurrence</b>,
-            not conceivability — the library is a cache of the plans that keep coming back,
-            not a catalogue of every job someone could imagine.</p>
+            swapped out, it has earned a pattern page. <b>A pattern is added when the same
+            plan keeps coming back</b>, not when someone can imagine the job existing.</p>
           <div class="callout violet">
             <div class="t">the one-way dependency</div>
-            <p>Work patterns name <a href="https://agentcollab.dev">agentcollab</a> patterns
-              as their phases; no collab playbook knows this library exists. Where a phase
-              needs a collab pattern that does not exist yet — train-and-certify's
-              assessment phase is one — the convener posts the rules in the room, which is
-              a pattern written inline, and both sides still read one document.</p>
+            <p>Work patterns use <a href="https://agentcollab.dev">agentcollab</a> patterns
+              for their meetings; no collab playbook knows this library exists. Anything
+              added here changes nothing over there.</p>
           </div>
         </div>
       </section>
 
       <footer>
         <div class="wrap">
-          <span>Agent Work Patterns · the layer above the meeting</span>
+          <span>Agent Work Patterns · whole jobs, not single meetings</span>
           <a href="https://github.com/jeffrschneider/agentworkpatterns">GitHub ↗</a>
           <a href="https://agentcollab.dev">Agent Collab ↗</a>
           <a href="https://agentmesh.ai">AgentMesh ↗</a>

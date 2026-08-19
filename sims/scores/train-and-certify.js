@@ -100,14 +100,14 @@ WPSim.register('train-and-certify', {
       log: 'The criteria are frozen. The roster freezes with them.',
       prop: { crit: { frozen: true } },
       set: { lc: 'idle' },
-      note: 'Once the criteria are frozen they cannot change, and neither can the roster. And just then, a new agent shows up.'
+      note: 'Once the criteria are frozen they cannot change, and neither can the roster. A new agent asks to join immediately after the freeze.'
     },
     {
       phase: 'The roster freezes', say: 'lc', to: 'ex', k: 'direct',
       wire: 'may I join?',
       log: '@Examiner — may I join the exam?',
       set: { lc: 'out' },
-      note: 'No. A job is only as open as its strictest phase: anyone could have joined during teach and read the minutes, but nobody joins an exam in progress. The latecomer waits for the next run.'
+      note: 'The examiner refuses. A job is only as open as its strictest phase: anyone could have joined during teach and read the minutes, but nobody joins an exam in progress. The latecomer waits for the next run.'
     },
     {
       phase: 'The exam', dur: 3000,

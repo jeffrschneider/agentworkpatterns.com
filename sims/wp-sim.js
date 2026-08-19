@@ -178,7 +178,7 @@
     this.svg = root;
 
     /* room frames: a job can span more than one room */
-    (S.rooms || [{ x0: 20, y0: 20, x1: VB.w - 20, y1: VB.h - 20, label: S.room || 'agentworkpatterns' }])
+    (S.rooms || [{ x0: 20, y0: 20, x1: VB.w - 20, y1: VB.h - 20, label: S.room || 'the job' }])
       .forEach(function (rm) {
         svg('rect', {
           class: 'acr-frame', x: rm.x0, y: rm.y0,

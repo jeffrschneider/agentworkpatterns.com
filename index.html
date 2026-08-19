@@ -126,7 +126,7 @@
   <div class="layout">
 
     <aside class="rail">
-      <a class="brand" href="/"><span class="dot"></span>AGENTWORKPATTERNS</a>
+      <a class="brand" href="/"><span class="dot"></span>AGENT WORK PATTERNS</a>
       <nav>
         <div class="grp">learn</div>
         <a class="on" href="#top">/ overview</a>
@@ -155,7 +155,7 @@
     <main class="main" id="top">
 
       <div class="wrap hero">
-        <span class="eyebrow"><span class="tag">agentworkpatterns</span> · how whole jobs get done</span>
+        <span class="eyebrow"><span class="tag">agent work patterns</span> · how whole jobs get done</span>
         <h1>Patterns for getting a<br><span class="am">whole job</span> done</h1>
         <p class="lede"><a href="https://agentcollab.dev">Agent Collab</a> describes how
           agents work together inside one room. This library describes how they get a
@@ -241,13 +241,15 @@ open items:
           <h2>The patterns</h2>
           <p>Six work patterns and the plan format. Each card links to the full document
             in the repo, which covers the phases, the handoffs, the failure edges, and
-            the roster rules. All four are drafts; a pattern keeps its "untested" label
+            the roster rules. All six are drafts; a pattern keeps its "untested" label
             until it survives a real multi-agent job.</p>
-          <p>Train and certify has a simulation under it. It uses the same visual language
-            as the simulations on <a href="https://agentcollab.dev">agentcollab.dev</a>,
-            plus the things a job has that a single room does not: two rooms on one
-            stage, a stretch with no room between them, and agents that move from one
-            phase to the next. If it works well, the other patterns will get one too.</p>
+          <p>Every pattern has a simulation under it. They use the same visual language as
+            the simulations on <a href="https://agentcollab.dev">agentcollab.dev</a>, plus
+            what a whole job has that a single room does not: more than one room on the
+            same stage, stretches that happen in no room at all, and agents that move from
+            one phase to the next. Each one runs a sample job from the brief to the
+            outcome, and each includes at least one failure edge, because that is the part
+            of a job a pattern is really for.</p>
 
           <section class="pat-sec" id="planning">
             <div class="pat-n">01 &middot; the format</div>
@@ -290,171 +292,27 @@ open items:
 
           <section class="pat-sec" id="divide-and-integrate">
             <div class="pat-n">03 &middot; production &middot; pulled</div>
-            <div class="acsim" style="--hue:var(--signal)">
-              <div class="acsim-head">
-                <div class="acsim-tag">work pattern &middot; cut, claim, weave</div>
-                <h3 class="acsim-name">Divide and integrate</h3>
-                <p class="acsim-line">Split a deliverable into jobs anyone can claim, then
-                  have one agent weave the results into a whole. The jobs must ask for
-                  material, not finished prose — otherwise the integrator is rewriting,
-                  not integrating.</p>
-                <div class="acsim-meta">
-                  <span class="acsim-status planned">draft v1 &middot; untested</span>
-                  <span class="acsim-grade">roster: open — the most open job in the library</span>
-                </div>
-                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/divide-and-integrate.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
-              </div>
-              <div class="wp-static">
-                <div class="wp-strip">
-                  <div class="wp-step noroom"><div class="n">1 &middot; divide</div><div class="c">cut the job list</div><div class="v">no room</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">2 &middot; produce</div><div class="c">claim and deliver</div><div class="v">convenes work-board</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">3 &middot; integrate</div><div class="c">one pen weaves the whole</div><div class="v">convenes rolling-synthesis</div></div>
-                </div>
-                <div class="wp-facts">
-                  <div class="acsim-pl"><b>handoffs:</b> the job list going in, each job stating what material it wants; delivered material tied to job ids coming out.</div>
-                  <div class="acsim-pl"><b>failure edges:</b> an unclaimed job just sits, so the plan gives the board a deadline. Material that does not fit becomes a follow-up job, not a negotiation — the worker may already be gone.</div>
-                  <div class="acsim-pl"><b>roster:</b> open all the way through produce — that is the point of the board. Use this when you cannot predict who will be available.</div>
-                </div>
-              </div>
-            </div>
+            <div class="ph" data-sim="divide-and-integrate">divide and integrate</div>
           </section>
 
           <section class="pat-sec" id="build-by-talent">
             <div class="pat-n">04 &middot; production &middot; assigned</div>
-            <div class="acsim" style="--hue:var(--address)">
-              <div class="acsim-head">
-                <div class="acsim-tag">work pattern &middot; the assignment is the point</div>
-                <h3 class="acsim-name">Build by talent</h3>
-                <p class="acsim-line">Divide a deliverable among specialists, each building
-                  the slice only they can build, then integrate. Do not run this through a
-                  work board — the board hands a job to whoever claims first, and handing
-                  the schema to the copywriter is not slower, it is wrong.</p>
-                <div class="acsim-meta">
-                  <span class="acsim-status planned">draft v1 &middot; untested</span>
-                  <span class="acsim-grade">roster: fixed — cast by talent in the plan</span>
-                </div>
-                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/build-by-talent.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
-              </div>
-              <div class="wp-static">
-                <div class="wp-strip">
-                  <div class="wp-step"><div class="n">1 &middot; spec</div><div class="c">freeze the seams</div><div class="v">convenes owner-contributors</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step noroom"><div class="n">2 &middot; build</div><div class="c">each slice, privately</div><div class="v">no room</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">3 &middot; integrate</div><div class="c">the lead assembles</div><div class="v">convenes rolling-synthesis</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">4 &middot; review</div><div class="c">each reviews the seams it consumes</div><div class="v">convenes critique-circle</div></div>
-                </div>
-                <div class="wp-facts">
-                  <div class="acsim-pl"><b>handoffs:</b> the frozen spec, seams stated — the only thing a specialist needs to start. Each delivered slice names the spec version it was built against.</div>
-                  <div class="acsim-pl"><b>failure edges:</b> a specialist misses and no substitute exists, by definition — the plan names a backup per slice or accepts the delay in writing. An unspecced seam reopens the spec for that seam only.</div>
-                  <div class="acsim-pl"><b>roster:</b> fixed before any room opens. The assignment happens in the plan itself — no collab pattern can assign work to a named agent, and the work board is deliberately built not to.</div>
-                </div>
-              </div>
-            </div>
+            <div class="ph" data-sim="build-by-talent">build by talent</div>
           </section>
 
           <section class="pat-sec" id="decide-and-announce">
             <div class="pat-n">05 &middot; decision</div>
-            <div class="acsim" style="--hue:var(--broadcast)">
-              <div class="acsim-head">
-                <div class="acsim-tag">work pattern &middot; hear, decide, tell</div>
-                <h3 class="acsim-name">Decide and announce</h3>
-                <p class="acsim-line">Hear from everyone who holds a piece of the picture,
-                  have one agent decide, then tell everyone the same thing. The decision
-                  itself happens in no room: the roll call collects the answers the owner
-                  decides on, and the briefing puts the decision on the record.</p>
-                <div class="acsim-meta">
-                  <span class="acsim-status planned">draft v1 &middot; untested</span>
-                  <span class="acsim-grade">roster: the owner's seat never changes hands</span>
-                </div>
-                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/decide-and-announce.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
-              </div>
-              <div class="wp-static">
-                <div class="wp-strip">
-                  <div class="wp-step"><div class="n">1 &middot; hear</div><div class="c">each answers once</div><div class="v">convenes roll-call</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step noroom"><div class="n">2 &middot; decide</div><div class="c">the owner, alone, in writing</div><div class="v">no room</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">3 &middot; announce</div><div class="c">the decision, the reasons, what changes</div><div class="v">convenes briefing</div></div>
-                </div>
-                <div class="wp-facts">
-                  <div class="acsim-pl"><b>handoffs:</b> the roll-call record going in; the decision written down with its reasons going out — written before the briefing, so announcing does not turn into deciding out loud.</div>
-                  <div class="acsim-pl"><b>failure edges:</b> answers conflict — the owner decides anyway, because conflict is why the decision has an owner, and names the dissent in the announcement. A required answer that never came is named too.</div>
-                  <div class="acsim-pl"><b>roster:</b> the plan names whose answers are required; hear is not complete until those agents have spoken. Announce is open — a latecomer reads the minutes.</div>
-                </div>
-              </div>
-            </div>
+            <div class="ph" data-sim="decide-and-announce">decide and announce</div>
           </section>
 
           <section class="pat-sec" id="collect-and-report">
             <div class="pat-n">06 &middot; reporting</div>
-            <div class="acsim" style="--hue:var(--verify)">
-              <div class="acsim-head">
-                <div class="acsim-tag">work pattern &middot; ask, merge, deliver</div>
-                <h3 class="acsim-name">Collect and report</h3>
-                <p class="acsim-line">Ask each named agent one question, merge the answers
-                  into a report, and deliver the same report to everyone who should see
-                  it. Every claim in the report stays attributed, so the reader can trace
-                  any line back to the agent who reported it.</p>
-                <div class="acsim-meta">
-                  <span class="acsim-status planned">draft v1 &middot; untested</span>
-                  <span class="acsim-grade">roster: the named reporters must answer; delivery is open</span>
-                </div>
-                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/collect-and-report.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
-              </div>
-              <div class="wp-static">
-                <div class="wp-strip">
-                  <div class="wp-step"><div class="n">1 &middot; hear</div><div class="c">each answers once</div><div class="v">convenes roll-call</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step noroom"><div class="n">2 &middot; synthesize</div><div class="c">one pen merges, attribution kept</div><div class="v">no room</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">3 &middot; deliver</div><div class="c">the same words to everyone</div><div class="v">convenes briefing</div></div>
-                </div>
-                <div class="wp-facts">
-                  <div class="acsim-pl"><b>handoffs:</b> the roll-call record going in; the finished report going out. The deliver phase reads the report; it does not rewrite it.</div>
-                  <div class="acsim-pl"><b>failure edges:</b> a required reporter stays silent &mdash; the plan says how long to wait, and the report names the missing input. Two answers contradict: the report records the contradiction, attributed to both; resolving it is a different job.</div>
-                  <div class="acsim-pl"><b>roster:</b> hear is not complete until every named reporter has answered or been recorded missing. This job usually runs on a schedule &mdash; planning covers recurring plans.</div>
-                </div>
-              </div>
-            </div>
+            <div class="ph" data-sim="collect-and-report">collect and report</div>
           </section>
 
           <section class="pat-sec" id="evaluate-options">
             <div class="pat-n">07 &middot; recommendation</div>
-            <div class="acsim" style="--hue:var(--signal)">
-              <div class="acsim-head">
-                <div class="acsim-tag">work pattern &middot; freeze criteria, gather, recommend</div>
-                <h3 class="acsim-name">Evaluate options</h3>
-                <p class="acsim-line">Decide the criteria before anyone starts researching,
-                  gather material about each option, compare the options against the
-                  criteria only, and hand a recommendation to a decider who was never in
-                  the room.</p>
-                <div class="acsim-meta">
-                  <span class="acsim-status planned">draft v1 &middot; untested</span>
-                  <span class="acsim-grade">roster: open through gather; the decider never joins</span>
-                </div>
-                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/evaluate-options.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
-              </div>
-              <div class="wp-static">
-                <div class="wp-strip">
-                  <div class="wp-step noroom"><div class="n">1 &middot; frame</div><div class="c">freeze the question and criteria</div><div class="v">no room</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">2 &middot; gather</div><div class="c">material per option, per criterion</div><div class="v">convenes work-board</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step"><div class="n">3 &middot; compare</div><div class="c">one pen, criteria only</div><div class="v">convenes rolling-synthesis</div></div>
-                  <div class="wp-arrow">&#8594;</div>
-                  <div class="wp-step noroom"><div class="n">4 &middot; recommend</div><div class="c">written for the decider</div><div class="v">no room</div></div>
-                </div>
-                <div class="wp-facts">
-                  <div class="acsim-pl"><b>handoffs:</b> the frozen criteria going in &mdash; written before any research, the same discipline as a bake-off brief. The comparison going out, every line traceable to a criterion.</div>
-                  <div class="acsim-pl"><b>failure edges:</b> an option that cannot be researched is scored "insufficient information", never guessed. A tie is reported as a tie, with the smallest fact that would break it.</div>
-                  <div class="acsim-pl"><b>roster:</b> the decider stays outside. Their independence from the research is what makes the recommendation worth having. If the decider is in the room, you wanted decide-and-announce.</div>
-                </div>
-              </div>
-            </div>
+            <div class="ph" data-sim="evaluate-options">evaluate options</div>
           </section>
 
         </div>
@@ -494,6 +352,11 @@ open items:
   </div>
 <script src="sims/wp-sim.js"></script>
 <script src="sims/scores/train-and-certify.js"></script>
+<script src="sims/scores/divide-and-integrate.js"></script>
+<script src="sims/scores/build-by-talent.js"></script>
+<script src="sims/scores/decide-and-announce.js"></script>
+<script src="sims/scores/collect-and-report.js"></script>
+<script src="sims/scores/evaluate-options.js"></script>
 <script>
 // The simulation is built only as it comes near the viewport.
 (() => {

@@ -140,6 +140,8 @@
         <a href="#divide-and-integrate">/ divide-and-integrate</a>
         <a href="#build-by-talent">/ build-by-talent</a>
         <a href="#decide-and-announce">/ decide-and-announce</a>
+        <a href="#collect-and-report">/ collect-and-report</a>
+        <a href="#evaluate-options">/ evaluate-options</a>
         <div class="grp">reference</div>
         <a href="https://github.com/jeffrschneider/agentworkpatterns">/ the-repo &#8599;</a>
         <a href="https://agentcollab.dev">/ agentcollab &#8599;</a>
@@ -182,10 +184,11 @@
             artifact one phase hands to the next, the phases that happen in no room at
             all (a trainee studying, a specialist building a slice), the rule for who
             can join or leave across the whole job, and what to do when a phase fails.</p>
-          <p>There is one loose end, and the pattern that has it says so. Train and
-            certify needs an exam pattern that Agent Collab does not have yet. Until that
-            playbook is written, the examiner posts the exam rules in the room, which is
-            Agent Collab's own fallback when no playbook fits.</p>
+          <p>When a phase needs a collab pattern that does not exist yet, the convener
+            posts the rules in the room, which is Agent Collab's own fallback when no
+            playbook fits. Train and certify ran that way until Agent Collab's
+            <a href="https://github.com/jeffrschneider/agentcollab/blob/main/patterns/assessment.md">assessment</a>
+            pattern was written; its certify phase now convenes assessment directly.</p>
         </div>
       </section>
 
@@ -236,7 +239,7 @@ open items:
         <div class="wrap">
           <p class="kicker">the library</p>
           <h2>The patterns</h2>
-          <p>Four work patterns and the plan format. Each card links to the full document
+          <p>Six work patterns and the plan format. Each card links to the full document
             in the repo, which covers the phases, the handoffs, the failure edges, and
             the roster rules. All four are drafts; a pattern keeps its "untested" label
             until it survives a real multi-agent job.</p>
@@ -381,6 +384,74 @@ open items:
                   <div class="acsim-pl"><b>handoffs:</b> the roll-call record going in; the decision written down with its reasons going out — written before the briefing, so announcing does not turn into deciding out loud.</div>
                   <div class="acsim-pl"><b>failure edges:</b> answers conflict — the owner decides anyway, because conflict is why the decision has an owner, and names the dissent in the announcement. A required answer that never came is named too.</div>
                   <div class="acsim-pl"><b>roster:</b> the plan names whose answers are required; hear is not complete until those agents have spoken. Announce is open — a latecomer reads the minutes.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pat-sec" id="collect-and-report">
+            <div class="pat-n">06 &middot; reporting</div>
+            <div class="acsim" style="--hue:var(--verify)">
+              <div class="acsim-head">
+                <div class="acsim-tag">work pattern &middot; ask, merge, deliver</div>
+                <h3 class="acsim-name">Collect and report</h3>
+                <p class="acsim-line">Ask each named agent one question, merge the answers
+                  into a report, and deliver the same report to everyone who should see
+                  it. Every claim in the report stays attributed, so the reader can trace
+                  any line back to the agent who reported it.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                  <span class="acsim-grade">roster: the named reporters must answer; delivery is open</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/collect-and-report.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step"><div class="n">1 &middot; hear</div><div class="c">each answers once</div><div class="v">convenes roll-call</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step noroom"><div class="n">2 &middot; synthesize</div><div class="c">one pen merges, attribution kept</div><div class="v">no room</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">3 &middot; deliver</div><div class="c">the same words to everyone</div><div class="v">convenes briefing</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>handoffs:</b> the roll-call record going in; the finished report going out. The deliver phase reads the report; it does not rewrite it.</div>
+                  <div class="acsim-pl"><b>failure edges:</b> a required reporter stays silent &mdash; the plan says how long to wait, and the report names the missing input. Two answers contradict: the report records the contradiction, attributed to both; resolving it is a different job.</div>
+                  <div class="acsim-pl"><b>roster:</b> hear is not complete until every named reporter has answered or been recorded missing. This job usually runs on a schedule &mdash; planning covers recurring plans.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pat-sec" id="evaluate-options">
+            <div class="pat-n">07 &middot; recommendation</div>
+            <div class="acsim" style="--hue:var(--signal)">
+              <div class="acsim-head">
+                <div class="acsim-tag">work pattern &middot; freeze criteria, gather, recommend</div>
+                <h3 class="acsim-name">Evaluate options</h3>
+                <p class="acsim-line">Decide the criteria before anyone starts researching,
+                  gather material about each option, compare the options against the
+                  criteria only, and hand a recommendation to a decider who was never in
+                  the room.</p>
+                <div class="acsim-meta">
+                  <span class="acsim-status planned">draft v1 &middot; untested</span>
+                  <span class="acsim-grade">roster: open through gather; the decider never joins</span>
+                </div>
+                <a class="acsim-doc" href="https://github.com/jeffrschneider/agentworkpatterns/blob/main/patterns/evaluate-options.md" target="_blank" rel="noopener noreferrer">read the pattern &#8599;</a>
+              </div>
+              <div class="wp-static">
+                <div class="wp-strip">
+                  <div class="wp-step noroom"><div class="n">1 &middot; frame</div><div class="c">freeze the question and criteria</div><div class="v">no room</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">2 &middot; gather</div><div class="c">material per option, per criterion</div><div class="v">convenes work-board</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step"><div class="n">3 &middot; compare</div><div class="c">one pen, criteria only</div><div class="v">convenes rolling-synthesis</div></div>
+                  <div class="wp-arrow">&#8594;</div>
+                  <div class="wp-step noroom"><div class="n">4 &middot; recommend</div><div class="c">written for the decider</div><div class="v">no room</div></div>
+                </div>
+                <div class="wp-facts">
+                  <div class="acsim-pl"><b>handoffs:</b> the frozen criteria going in &mdash; written before any research, the same discipline as a bake-off brief. The comparison going out, every line traceable to a criterion.</div>
+                  <div class="acsim-pl"><b>failure edges:</b> an option that cannot be researched is scored "insufficient information", never guessed. A tie is reported as a tie, with the smallest fact that would break it.</div>
+                  <div class="acsim-pl"><b>roster:</b> the decider stays outside. Their independence from the research is what makes the recommendation worth having. If the decider is in the room, you wanted decide-and-announce.</div>
                 </div>
               </div>
             </div>

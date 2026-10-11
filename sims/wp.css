@@ -78,7 +78,7 @@
 
 /* The transcript floats in its own absolute layer so its length never
    stretches the row: the stage alone decides how tall a simulation is. */
-.acsim-log{ border-left:1px solid var(--line); background:rgba(0,0,0,.16); position:relative; }
+.acsim-log{ border-left:1px solid var(--line); background:var(--surface-2); position:relative; }
 .acsim-log-in{ position:absolute; inset:0; overflow-y:auto; padding:12px 0; scrollbar-width:thin; }
 @container (max-width: 660px){
   .acsim-log{ border-left:0; border-top:1px solid var(--line); }
@@ -104,7 +104,7 @@
 
 /* -- controls -------------------------------------------------------- */
 .acsim-ctl{ display:flex; align-items:center; gap:9px; padding:10px 20px 12px;
-  border-top:1px solid var(--line); background:rgba(0,0,0,.14); }
+  border-top:1px solid var(--line); background:var(--surface-2); }
 .acsim-btn{ font-family:var(--wire); font-size:.78rem; color:var(--dim);
   background:transparent; border:1px solid var(--line); border-radius:7px;
   padding:5px 9px; cursor:pointer; line-height:1; min-width:29px;
@@ -193,7 +193,7 @@
 
 /* -- stage: framing panels (the brief, and what came out) ------------ */
 .acsim-panel{ position:absolute; inset:0; padding:17px 22px 20px; overflow-y:auto;
-  background:linear-gradient(150deg, #10222a, var(--panel) 62%);
+  background:linear-gradient(150deg, var(--surface), var(--panel) 62%);
   display:none; scrollbar-width:thin; animation:acsim-fade .45s ease; }
 .acsim-panel.on{ display:block; }
 @keyframes acsim-fade{ from{ opacity:0; } to{ opacity:1; } }
@@ -250,7 +250,7 @@
 .wp-static{ padding:18px 20px 20px; }
 .wp-strip{ display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; margin:0 0 16px; }
 .wp-step{ border:1px solid var(--line); border-radius:9px; padding:9px 13px;
-  min-width:118px; background:rgba(0,0,0,.14); }
+  min-width:118px; background:var(--surface-2); }
 .wp-step.noroom{ border-style:dashed; }
 .wp-step .n{ font-family:var(--wire); font-size:.62rem; letter-spacing:.14em;
   text-transform:uppercase; color:var(--hue,var(--verify)); }
